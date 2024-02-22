@@ -12,7 +12,7 @@ jobs:
   sync_latest_from_upstream:
     name: Sync latest commits from upstream repo
     runs-on: ubuntu-latest
-    if: $
+    if: ${{github.event.repository.fork}}
 
     steps:
       # Step 1: run a standard checkout action
@@ -27,7 +27,7 @@ jobs:
           upstream_sync_repo: kejilion/python-for-vps
           upstream_sync_branch: main
           target_sync_branch: main
-          target_repo_token: $ # automatically generated, no need to set
+          target_repo_token: ${{secrets.GITHUB_TOKEN}} # automatically generated, no need to set
 
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
